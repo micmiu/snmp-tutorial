@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf8"?>
+<rrd_graph_def>
+    <span>
+        <start>${startTime}</start>
+        <end>${endTime}</end>
+    </span>
+    <filename>-</filename>
+    <options>
+        <anti_aliasing>off</anti_aliasing>
+        <fonts>
+            <small_font>
+                <name>Monospaced</name>
+                <style>PLAIN</style>
+                <size>11</size>
+            </small_font>
+            <large_font>
+                <name>SansSerif</name>
+                <style>BOLD</style>
+                <size>14</size>
+            </large_font>
+        </fonts>
+        <title>JRobin graph by xml template demo</title>
+        <vertical_label>transfer speed [bits/sec]</vertical_label>
+        <width>500</width>
+        <height>200</height>
+        <image_format>PNG</image_format>
+        <base>1024</base>
+    </options>
+    <datasources>
+        <def>
+            <name>in</name>
+            <rrd>${in_rrd_file}</rrd>
+            <source>input</source>
+            <cf>AVERAGE</cf>
+        </def>
+        <def>
+            <name>out</name>
+            <rrd>${out_rrd_file}</rrd>
+            <source>output</source>
+            <cf>AVERAGE</cf>
+        </def>
+    </datasources>
+    <graph>
+        <area>
+            <datasource>in</datasource>
+            <color>#00ce00</color>
+            <legend>入速率</legend>
+        </area>
+        <line>
+            <datasource>out</datasource>
+            <color>#0000FF</color>
+            <legend>出速率\l</legend>
+        </line>
+        <gprint>
+            <datasource>in</datasource>
+            <cf>MAX</cf>
+            <format>入速率最大值:%7.2f %sbits/sec</format>
+        </gprint>
+        <gprint>
+            <datasource>out</datasource>
+            <cf>MAX</cf>
+            <format>出速率最大值:%7.2f %sbits/sec\l</format>
+        </gprint>
+        <gprint>
+            <datasource>in</datasource>
+            <cf>AVERAGE</cf>
+            <format>入速率平均值:%7.2f %sbits/sec</format>
+        </gprint>
+        <gprint>
+            <datasource>out</datasource>
+            <cf>AVERAGE</cf>
+            <format>出速率平均值:%7.2f %sbits/sec\l</format>
+        </gprint>
+        <gprint>
+            <datasource>in</datasource>
+            <cf>TOTAL</cf>
+            <format>总入流量:%7.2f %sbits</format>
+        </gprint>
+        <gprint>
+            <datasource>out</datasource>
+            <cf>TOTAL</cf>
+            <format>总出流量:%7.2f %sbits\l</format>
+        </gprint>
+        <comment>测试画图\l</comment>
+    </graph>
+</rrd_graph_def>
